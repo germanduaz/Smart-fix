@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Smart Fix">
+    <title>Smart Fix - App Móvil</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header -->
+        <header class="mobile-header">
+            <div class="header-content">
+                <h1>📱 Smart Fix</h1>
+                <div class="header-actions">
+                    <button id="sync-btn" class="header-btn">🔄</button>
+                    <button id="menu-btn" class="header-btn">☰</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="mobile-content">
+            <!-- Dashboard Tab -->
+            <section id="tab-dashboard" class="tab active">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Generado Hoy</div>
+                        <div class="stat-value" id="mobile-today-generated">$0.00</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Órdenes</div>
+                        <div class="stat-value" id="mobile-total-orders">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Entregadas</div>
+                        <div class="stat-value" id="mobile-delivered">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Caja</div>
+                        <div class="stat-value" id="mobile-cash">$0.00</div>
+                    </div>
+                </div>
+
+                <div class="section-title">📋 Últimas Órdenes</div>
+                <div id="mobile-recent-orders" class="orders-list-mobile">
+                    <!-- Generado por JS -->
+                </div>
+            </section>
+
+            <!-- New Order Tab -->
+            <section id="tab-new-order" class="tab">
+                <div class="mobile-card">
+                    <h2>Crear Nueva Orden</h2>
+                    <form id="mobile-order-form">
+                        <div class="form-group">
+                            <label>Nombre Cliente *</label>
+                            <input type="text" id="mobile-client-name" required placeholder="Nombre...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Teléfono *</label>
+                            <input type="tel" id="mobile-client-phone" required placeholder="3001234567">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Equipo *</label>
+                            <input type="text" id="mobile-device" required placeholder="iPhone 12...">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Reparación *</label>
+                            <select id="mobile-repair-type" required>
+                                <option value="">Selecciona...</option>
+                                <option value="Pantalla">Pantalla</option>
+                                <option value="Batería">Batería</option>
+                                <option value="Carga">Puerto de Carga</option>
+                                <option value="Botones">Botones</option>
+                                <option value="Software">Software</option>
+                                <option value="Cámara">Cámara</option>
+                                <option value="Altavoz">Altavoz</option>
+                                <option value="Micrófono">Micrófono</option>
+                                <option value="Limpieza">Limpieza</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Presupuesto $</label>
+                                <input type="number" id="mobile-budget" step="0.01" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Anticipo $</label>
+                                <input type="number" id="mobile-advance" step="0.01" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Técnico *</label>
+                            <select id="mobile-technician" required>
+                                <option value="">Selecciona...</option>
+                                <option value="Técnico 1">Técnico 1</option>
+                                <option value="Técnico 2">Técnico 2</option>
+                                <option value="Técnico 3">Técnico 3</option>
+                                <option value="Técnico 4">Técnico 4</option>
+                                <option value="Técnico 5">Técnico 5</option>
+                                <option value="Técnico 6">Técnico 6</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-primary full-width">💾 Guardar</button>
+                        <button type="reset" class="btn-secondary full-width" style="margin-top: 10px;">🔄 Limpiar</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Orders Tab -->
+            <section id="tab-orders" class="tab">
+                <div class="search-box">
+                    <input type="search" id="mobile-search" placeholder="🔍 Buscar cliente...">
+                </div>
+                <div id="mobile-orders-list" class="orders-list-mobile">
+                    <!-- Generado por JS -->
+                </div>
+            </section>
+
+            <!-- Warranties Tab -->
+            <section id="tab-warranties" class="tab">
+                <div id="mobile-warranties-list" class="orders-list-mobile">
+                    <!-- Generado por JS -->
+                </div>
+            </section>
+
+            <!-- Admin Tab -->
+            <section id="tab-admin" class="tab">
+                <div class="mobile-card">
+                    <h2>⚙️ Administración</h2>
+                    
+                    <div class="admin-section">
+                        <h3>📊 Corte de Caja</h3>
+                        <form id="mobile-cash-cut-form">
+                            <div class="form-group">
+                                <label>Efectivo en Caja $</label>
+                                <input type="number" id="mobile-physical-cash" step="0.01" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Notas</label>
+                                <textarea id="mobile-cut-notes" placeholder="Observaciones..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary full-width">💾 Registrar</button>
+                        </form>
+                    </div>
+
+                    <div class="admin-section">
+                        <h3>📤 Datos</h3>
+                        <button id="mobile-export-btn" class="btn-secondary full-width">📥 Exportar</button>
+                        <button id="mobile-import-btn" class="btn-secondary full-width" style="margin-top: 10px;">📤 Importar</button>
+                        <input type="file" id="mobile-import-file" accept=".json" style="display:none;">
+                        <button id="mobile-clear-btn" class="btn-danger full-width" style="margin-top: 10px;">🗑️ Eliminar Todo</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="mobile-nav">
+            <button class="nav-btn active" data-tab="dashboard">
+                <span>📊</span>
+                <span>Inicio</span>
+            </button>
+            <button class="nav-btn" data-tab="new-order">
+                <span>➕</span>
+                <span>Nueva</span>
+            </button>
+            <button class="nav-btn" data-tab="orders">
+                <span>📋</span>
+                <span>Órdenes</span>
+            </button>
+            <button class="nav-btn" data-tab="warranties">
+                <span>✅</span>
+                <span>Garantía</span>
+            </button>
+            <button class="nav-btn" data-tab="admin">
+                <span>⚙️</span>
+                <span>Admin</span>
+            </button>
+        </nav>
+
+        <!-- Order Detail Modal -->
+        <div id="mobile-order-modal" class="mobile-modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div id="mobile-order-detail">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Modal -->
+        <div id="mobile-ticket-modal" class="mobile-modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div id="mobile-ticket-content" class="ticket">
+                    <!-- Generado por JS -->
+                </div>
+                <button class="btn-primary full-width" onclick="printMobileTicket()" style="margin-top: 15px;">🖨️ Imprimir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/db.js"></script>
+    <script src="js/mobile-app.js"></script>
+</body>
+</html>
